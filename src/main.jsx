@@ -6,21 +6,17 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import DashboardComponent from './components/DashboardComponent';
 import HomePage from './page/HomePage';
 import NotFoundErrorPage from './page/NotFoundErrorPage';
 import SignInPage from './page/SignInPage';
 import SignUpPage from './page/SignUpPage';
+import DataViewPage from './page/DataViewPage';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
-      {
-        path: "/dashboard",
-        element: <DashboardComponent />
-      },
       {
         path: "/",
         element: <HomePage />
@@ -32,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "/signUp",
         element: <SignUpPage />
+      },
+      {
+        path: "/dashboard",
+        element: <DataViewPage />
       }
     ]
   },
