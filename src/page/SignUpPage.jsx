@@ -86,7 +86,7 @@ const SignUpPage = () => {
                     <form className="flex flex-col gap-4">
                         <div>
                             <div className="mb-2 block">
-                                <Label htmlFor="email" value="Your organization email" />
+                                <Label htmlFor="email" value="email" />
                             </div>
                             <TextInput
                                 id="email"
@@ -125,12 +125,12 @@ const SignUpPage = () => {
 
                         <div>
                             <div className="mb-2 block">
-                                <Label htmlFor="firstName" value="First Name" />
+                                <Label htmlFor="firstName" value="Hardware Id" />
                             </div>
                             <TextInput
                                 id="firstName"
                                 type="text"
-                                placeholder="Your First Name"
+                                placeholder="Hardware Id"
                                 required={false}
                                 value={formValues.firstName}
                                 onChange={handleInputChange}
