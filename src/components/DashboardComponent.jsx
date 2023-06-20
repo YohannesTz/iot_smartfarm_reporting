@@ -1,70 +1,25 @@
 import { Button } from "flowbite-react";
 import React, { useState, useEffect } from "react";
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, AreaChart, Area } from 'recharts';
+import { CartesianGrid, XAxis, YAxis, Tooltip, AreaChart, Area, Legend } from 'recharts';
+import axios from "axios";
+import { BASE_URL } from "../util/Constants";
 
-
-const data = [
-    {
-        name: 'Page A',
-        uv: 4000,
-        pv: 2400,
-        amt: 2400,
-    },
-    {
-        name: 'Page B',
-        uv: 3000,
-        pv: 1398,
-        amt: 2210,
-    },
-    {
-        name: 'Page C',
-        uv: 2000,
-        pv: 9800,
-        amt: 2290,
-    },
-    {
-        name: 'Page D',
-        uv: 2780,
-        pv: 3908,
-        amt: 2000,
-    },
-    {
-        name: 'Page E',
-        uv: 1890,
-        pv: 4800,
-        amt: 2181,
-    },
-    {
-        name: 'Page F',
-        uv: 2390,
-        pv: 3800,
-        amt: 2500,
-    },
-    {
-        name: 'Page G',
-        uv: 3490,
-        pv: 4300,
-        amt: 2100,
-    },
-    {
-        name: 'Page H',
-        uv: 2390,
-        pv: 3800,
-        amt: 2500,
-    },
-    {
-        name: 'Page I',
-        uv: 3490,
-        pv: 4300,
-        amt: 2100,
-    },
-];
-
-const DashboardComponent = () => {
+const DashboardComponent = (props) => {
+    const [timeMode, setTimeMode] = useState(1);
+    const [data, setData] = useState([{
+        hardwareId: "",
+        temp: 0,
+        humidity: 0,
+        pumpstatus: 0,
+        timestamp: ""
+    }]);
     const [windowSize, setWindowSize] = useState({
         width: window.innerWidth,
         height: window.innerHeight,
     });
+
+    const userData = props.userData;
+    const isRand = props.isRandom ? "&isRand=true" : "";
 
     useEffect(() => {
         function handleResize() {
@@ -78,40 +33,63 @@ const DashboardComponent = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+    useEffect(() => {
+        const fetchData = () => {
+            axios
+                .get(BASE_URL + `getSummary.php?password=${userData.pwd}&hardwareId=${userData.user.hardwareId}&isEnc=true&${isRand}&mode=${timeMode}`)
+                .then(response => {
+                    if (response.data.success) {
+                        setData(response.data.data);
+                        console.log(response);
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+
+        fetchData();
+    }, [timeMode]);
+
+    const formatDate = (timestamp) => {
+        const date = new Date(timestamp * 1000);
+        const month = date.toLocaleString('default', { month: 'short' });
+        const day = date.getDate();
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+        const formattedDate = `${month} ${day} at ${hours}:${minutes}`;
+        return formattedDate;
+    }
+
+    const amplifyPumpStatus = (pumpstatus) => {
+        return pumpstatus == 1 ? 30 : 0;
+    }
+
     return (
         <div>
             <div className="flex flex-col flex-wrap my-6 justify-center">
                 <div className="flex-row">
                     <div className="text-gray-800 whitespace-break-normal flex-row">
-                        <p className="text-xl justify-center text-center font-bold">Your Tracking for device: </p>
+                        <p className="text-xl justify-center text-center font-bold">Your Tracking for device: {userData.user.hardwareId}</p>
                     </div>
                     <div className="text-gray-800 whitespace-break-normal py-5 flex items-center justify-center">
                         <Button.Group>
-                            <Button color="gray">
+                            <Button color="gray" onClick={() => setTimeMode(1)}>
                                 6hr
                             </Button>
-                            <Button color="gray">
+                            <Button color="gray" onClick={() => setTimeMode(2)}>
                                 1 Day
                             </Button>
-                            <Button color="gray">
+                            <Button color="gray" onClick={() => setTimeMode(3)}>
                                 1 Week
                             </Button>
-                            <Button color="gray">
+                            <Button color="gray" onClick={() => setTimeMode(4)}>
                                 1 Month
                             </Button>
                         </Button.Group>
                     </div>
                 </div>
                 <div className="flex-row justify-center">
-                    {/* <AreaChart width={windowSize.width - 200} height={windowSize.height - 200} data={data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
-                        <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-                        <Line type="monotone" dataKey="pv" stroke="#03fc66" />
-                        <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        <Tooltip />
-                    </AreaChart> */}
-
                     <AreaChart width={windowSize.width - 200} height={windowSize.height - 200} data={data}
                         margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
                         <defs>
@@ -123,24 +101,20 @@ const DashboardComponent = () => {
                                 <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
                                 <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
                             </linearGradient>
+                            <linearGradient id="colorZv" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="5%" stopColor="#c87909" stopOpacity={0.8} />
+                                <stop offset="95%" stopColor="#c87909" stopOpacity={0} />
+                            </linearGradient>
                         </defs>
-                        <XAxis dataKey="name" />
+                        <Legend verticalAlign="top" height={36} />
+                        <XAxis dataKey="timestamp" name="Time" tickFormatter={formatDate} />
                         <YAxis />
                         <CartesianGrid strokeDasharray="3 3" />
                         <Tooltip />
-                        <Area type="monotone" dataKey="uv" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
-                        <Area type="monotone" dataKey="pv" stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)" />
+                        <Area type="monotone" name="Temprature" dataKey="temp" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
+                        <Area type="monotone" name="Humidity" dataKey="humidity" stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)" />
+                        <Area type="monotone" name="Pumpstatus" dataKey="pumpstatus" stroke="#c87909" fillOpacity={1} fill="url(#colorZv)" tickFormatter={amplifyPumpStatus} />
                     </AreaChart>
-                </div>
-
-                <div className="text-gray-800 text-left whitespace-break-normal flex-row">
-                    <p className="text-xl justify-center text-center py-10 font-bold">
-                        <label className="relative inline-flex items-center justify-self-center cursor-pointer">
-                            <input type="checkbox" checked={false} disabled={true} value="" className="sr-only peer" />
-                            <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                            <span className="ml-3 text-lg font-medium text-gray-900 dark:text-gray-300">Pump Status</span>
-                        </label>
-                    </p>
                 </div>
             </div>
         </div>

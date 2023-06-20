@@ -58,14 +58,14 @@ const DataViewPage = () => {
                     active
                     title="Realtime Data"
                 >
-                    <RealtimeDataComponent />
+                    <RealtimeDataComponent userData={data} isRandom={false} />
                 </Tabs.Item>
 
                 <Tabs.Item
                     active
                     title="Summary"
                 >
-                    <DashboardComponent />
+                    <DashboardComponent userData={data} isRandom={false}/>
                 </Tabs.Item>
             </Tabs.Group>
         </div>

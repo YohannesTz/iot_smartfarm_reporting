@@ -1,11 +1,17 @@
 import React from "react";
 import { Navbar } from "flowbite-react";
+import { useNavigate } from "react-router-dom";
 
 const NavbarComponent = () => {
-
+    const navigate = useNavigate();
     const data = JSON.parse(localStorage.getItem('userData'));
 
     let isAuthenticated = data == null || typeof (data) == null ? false : true;
+
+    const handleLogOut = () => {
+        localStorage.clear();
+        navigate("/");
+    };
 
     return (
         <div className="sticky top-0 z-1000 bg-white">
@@ -24,8 +30,8 @@ const NavbarComponent = () => {
                         Dashboard
                     </Navbar.Link>
                     {isAuthenticated && (
-                        <Navbar.Link href="/dashboard">
-                            Dashboard
+                        <Navbar.Link onClick={handleLogOut}>
+                            Logout
                         </Navbar.Link>
                     )}
                 </Navbar.Collapse>
