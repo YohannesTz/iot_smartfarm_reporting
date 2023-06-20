@@ -2,6 +2,11 @@ import React from "react";
 import { Navbar } from "flowbite-react";
 
 const NavbarComponent = () => {
+
+    const data = JSON.parse(localStorage.getItem('userData'));
+
+    let isAuthenticated = data == null || typeof (data) == null ? false : true;
+
     return (
         <div className="sticky top-0 z-1000 bg-white">
             <Navbar fluid rounded>
@@ -18,6 +23,11 @@ const NavbarComponent = () => {
                     <Navbar.Link href="/dashboard">
                         Dashboard
                     </Navbar.Link>
+                    {isAuthenticated && (
+                        <Navbar.Link href="/dashboard">
+                            Dashboard
+                        </Navbar.Link>
+                    )}
                 </Navbar.Collapse>
             </Navbar>
         </div>

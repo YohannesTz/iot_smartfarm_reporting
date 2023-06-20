@@ -3,19 +3,22 @@ import { Label, TextInput, Button, Spinner, Modal } from "flowbite-react";
 import { BsFillCheckCircleFill, BsFillXOctagonFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { VisiblityButton } from "../components/VisiblityButton";
+import axios from "axios";
+import { BASE_URL } from "../util/Constants";
 
 
 const SignInPage = () => {
 
   const initialValues = {
     email: "",
-    password: "",
+    password: ""
   };
   const [formValues, setFormValues] = useState(initialValues);
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState({});
   const [showDialog, setShowDialog] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { value } = e.target;
@@ -27,9 +30,37 @@ const SignInPage = () => {
     console.log(formValues);
   };
 
-  const handleSubmit = (e) => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
 
-  const onClose = (e) => {};
+    const data = new URLSearchParams();
+    data.append('email', formValues.email);
+    data.append('password', formValues.password);
+
+    axios
+      .post(BASE_URL + 'signIn.php', data)
+      .then(response => {
+        console.log(response.data);
+        setResult(response.data);
+        setIsLoading(false);
+        setShowDialog(true);
+
+        if (response.data.success) {
+          localStorage.setItem('userData', JSON.stringify(response.data.data));
+        }
+      })
+      .catch(error => {
+        console.error(error);
+        setIsLoading(false);
+      });
+  };
+
+  const onClose = (e) => {
+    if (result.success) {
+      navigate("/")
+    }
+  };
 
   return (
     <div className="my-10">
@@ -53,9 +84,9 @@ const SignInPage = () => {
               <div>
                 <BsFillXOctagonFill className="mx-auto mb-4 h-14 w-14 text-gray-600 " />
                 <h3 className="mb-5 text-lg font-normal text-gray-600 ">
-                  {typeof result.error == "undefined"
+                  {typeof result.message == "undefined"
                     ? " Unknwon error! "
-                    : result.error.message}
+                    : result.message}
                 </h3>
               </div>
             )}
@@ -71,7 +102,7 @@ const SignInPage = () => {
         <form className="flex flex-col gap-4 sm:w-3/5 lg:w-2/5 md:w-3/5">
           <div>
             <div className="mb-2 block">
-              <Label htmlFor="email" value="Your email" />
+              <Label htmlFor="email" value="Email" />
             </div>
             <TextInput
               id="email"

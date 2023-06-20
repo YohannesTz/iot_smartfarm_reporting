@@ -10,23 +10,25 @@ import {
 import { VisiblityButton } from "../components/VisiblityButton";
 import { BsFillCheckCircleFill, BsFillXOctagonFill } from "react-icons/bs";
 import PasswordStrengthBar from "react-password-strength-bar";
+import axios from "axios";
+import { BASE_URL } from "../util/Constants";
+import { useNavigate } from "react-router-dom";
 
 const SignUpPage = () => {
 
     const initialValues = {
         email: "",
         password: "",
-        deviceId: ""
+        hardwareId: ""
     };
 
     const [formValues, setFormValues] = useState(initialValues);
-    const [phoneError, setPhoneError] = useState("Please Enter a valid phone number!");
-    const [emailError, setEmailError] = useState("Please enter a vlaid email!");
     const [isLoading, setIsLoading] = useState(false);
     const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const [showDialog, setShowDialog] = useState(false);
     const [result, setResult] = useState({});
+    let navigate = useNavigate();
 
     const onClose = () => {
         setShowDialog(false);
@@ -40,9 +42,49 @@ const SignUpPage = () => {
         setIsPasswordVisible(!isPasswordVisible);
     };
 
-    const handleInputChange = (e) => { };
+    const handleInputChange = (e) => {
+        const { value } = e.target;
 
-    const handleSubmit = (e) => { };
+        if (formValues.password.length + 1 >= 8 &&
+            /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(formValues.email) && formValues.hardwareId) {
+            console.log("check is successfull");
+            setIsSubmitDisabled(false);
+        } else {
+            setIsSubmitDisabled(true);
+        }
+
+        setFormValues({
+            ...formValues,
+            [e.target.id]: value,
+        });
+
+        console.log(formValues);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(formValues);
+        setIsLoading(true);
+
+        const data = new URLSearchParams();
+        data.append('email', formValues.email);
+        data.append('password', formValues.password);
+        data.append('hardwareId', formValues.hardwareId);
+
+        axios
+            .post(BASE_URL + 'signUp.php', data)
+            .then(response => {
+                console.log(response.data);
+                setResult(response.data);
+                setIsLoading(false);
+                setShowDialog(true);
+                console.log(result.success);
+            })
+            .catch(error => {
+                console.error(error);
+                setIsLoading(false);
+            });
+    };
 
 
     return (
@@ -62,9 +104,9 @@ const SignUpPage = () => {
                             <div>
                                 <BsFillXOctagonFill className="mx-auto mb-4 h-14 w-14 text-gray-600 " />
                                 <h3 className="mb-5 text-lg font-normal text-gray-600 ">
-                                    {typeof result.error == "undefined"
+                                    {typeof result.message == "undefined"
                                         ? " Unknwon error! "
-                                        : result.error.message}
+                                        : result.message}
                                 </h3>
                             </div>
                         )}
@@ -86,7 +128,7 @@ const SignUpPage = () => {
                     <form className="flex flex-col gap-4">
                         <div>
                             <div className="mb-2 block">
-                                <Label htmlFor="email" value="email" />
+                                <Label htmlFor="email" value="Email" />
                             </div>
                             <TextInput
                                 id="email"
@@ -96,7 +138,7 @@ const SignUpPage = () => {
                                 onChange={handleInputChange}
                                 required={true}
                             />
-                            <p className="text-red-400 2xl mt-2">{emailError}</p>
+                            {/* <p className="text-red-400 2xl mt-2">{emailError}</p> */}
                         </div>
 
                         <div>
@@ -125,14 +167,14 @@ const SignUpPage = () => {
 
                         <div>
                             <div className="mb-2 block">
-                                <Label htmlFor="firstName" value="Hardware Id" />
+                                <Label htmlFor="hardwareId" value="Hardware Id" />
                             </div>
                             <TextInput
-                                id="firstName"
+                                id="hardwareId"
                                 type="text"
                                 placeholder="Hardware Id"
                                 required={false}
-                                value={formValues.firstName}
+                                value={formValues.hardwareId}
                                 onChange={handleInputChange}
                             />
                         </div>
