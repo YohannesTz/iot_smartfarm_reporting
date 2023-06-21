@@ -122,41 +122,41 @@ const HomePage = () => {
             </div>
 
             <p className="text-4xl sm:text-3xl text-center text-gray-800 py-5">
-                Group Memebers
+                Developers
             </p>
             <div className="grid grid-cols-3 gap-3 place-items-center py-10">
                 <div className="content-center shadow-lg hover:shadow-2xl py-10 px-20 rounded-lg border-2">
-                    <img class="rounded-full border border-gray-100 self-center" width="150px" height="150px" src="./images/ab_moti.jpg" alt="user image" />
+                    <img class="rounded-full border border-gray-100 self-center" width="150px" height="150px" src="./images/image_placeholder.jpg" alt="user image" />
                     <p className="text-xl text-center text-gray-800 font-bold py-4">
-                        Group Member <br /> Id: 
+                        Natnael Dagne
                     </p>
                 </div>
 
                 <div className="content-center shadow-lg hover:shadow-2xl py-10 px-20 rounded-md border-2">
-                    <img class="rounded-full border border-gray-100 self-center" width="150px" height="150px" src="./images/abdi_yo.jpg" alt="user image" />
+                    <img class="rounded-full border border-gray-100 self-center" width="150px" height="150px" src="./images/image_placeholder.jpg" alt="user image" />
                     <p className="text-xl text-center text-gray-800 font-bold py-4">
-                        Group Member <br /> Id:
+                        Naol Abdissa
                     </p>
                 </div>
 
                 <div className="content-center shadow-lg hover:shadow-2xl py-10 px-20 rounded-md border-2">
-                    <img class="rounded-full border border-gray-100 self-center" width="150px" height="150px" src="./images/of.jpg" alt="user image" />
+                    <img class="rounded-full border border-gray-100 self-center" width="150px" height="150px" src="./images/image_placeholder.jpg" alt="user image" />
                     <p className="text-xl text-center text-gray-800 font-bold py-4">
-                        Group Member<br /> Id:
+                        Muktar Mohammed
                     </p>
                 </div>
 
                 <div className="content-center shadow-lg hover:shadow-2xl py-10 px-20 rounded-md border-2">
-                    <img class="rounded-full border border-gray-100 self-center" width="150px" height="150px" src="./images/mahlet_2.jpg" alt="user image" />
+                    <img class="rounded-full border border-gray-100 self-center" width="150px" height="150px" src="./images/female-placeholder.jpeg" alt="user image" />
                     <p className="text-xl text-center text-gray-800 font-bold py-4">
-                        Group Member <br /> Id: Micro 
+                        Rakeb Demissew
                     </p>
                 </div>
 
                 <div className="content-center shadow-lg hover:shadow-2xl py-10 px-20 rounded-md border-2">
-                    <img class="rounded-full border border-gray-100 self-center" width="150px" height="150px" src="./images/abdi_bd.jpg" alt="user image" />
+                    <img class="rounded-full border border-gray-100 self-center" width="150px" height="150px" src="./images/image_placeholder.jpg" alt="user image" />
                     <p className="text-xl text-center text-gray-800 font-bold py-4">
-                        Group member <br /> Id:
+                        Yohannes Bahiru
                     </p>
                 </div>
 
