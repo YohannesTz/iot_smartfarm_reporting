@@ -6,8 +6,8 @@ const NavbarComponent = () => {
     const navigate = useNavigate();
     const data = JSON.parse(localStorage.getItem('userData'));
 
-    let isAuthenticated = data == null || typeof (data) == null ? false : true;
-
+    let isAuthenticated = (data == null || typeof (data) == null) ? false : true;
+    console.log(data);
     const handleLogOut = () => {
         localStorage.clear();
         navigate("/");

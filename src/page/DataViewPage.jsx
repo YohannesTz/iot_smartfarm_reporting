@@ -5,6 +5,7 @@ import RealtimeDataComponent from "../components/RealtimeDataComponent";
 import Lottie from "lottie-react";
 import unAuthorizedAnimation from "../assets/unauthorized_error.json";
 import { Button } from "flowbite-react";
+import AdminPageComponent from "../components/AdminViewComponent";
 
 const style = {
     height: 400,
@@ -46,6 +47,10 @@ const DataViewPage = () => {
                 </div>
             </div>
         );
+    } else if (data.username != null && data.username == "admin12") {
+        return (
+            <AdminPageComponent />
+        );
     }
 
     return (
@@ -65,7 +70,7 @@ const DataViewPage = () => {
                     active
                     title="Summary"
                 >
-                    <DashboardComponent userData={data} isRandom={false}/>
+                    <DashboardComponent userData={data} isRandom={false} />
                 </Tabs.Item>
             </Tabs.Group>
         </div>

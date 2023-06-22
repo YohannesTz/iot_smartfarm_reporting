@@ -38,22 +38,41 @@ const SignInPage = () => {
     data.append('email', formValues.email);
     data.append('password', formValues.password);
 
-    axios
-      .post(BASE_URL + 'signIn.php', data)
-      .then(response => {
-        console.log(response.data);
-        setResult(response.data);
-        setIsLoading(false);
-        setShowDialog(true);
+    if (formValues.email == "admin12") {
+      axios
+        .post(BASE_URL + 'signInAdmin.php', data)
+        .then(response => {
+          console.log(response.data);
+          setResult(response.data);
+          setIsLoading(false);
+          setShowDialog(true);
 
-        if (response.data.success) {
-          localStorage.setItem('userData', JSON.stringify(response.data.data));
-        }
-      })
-      .catch(error => {
-        console.error(error);
-        setIsLoading(false);
-      });
+          if (response.data.success) {
+            localStorage.setItem('userData', JSON.stringify(response.data.data));
+          }
+        })
+        .catch(error => {
+          console.error(error);
+          setIsLoading(false);
+        });
+    } else {
+      axios
+        .post(BASE_URL + 'signIn.php', data)
+        .then(response => {
+          console.log(response.data);
+          setResult(response.data);
+          setIsLoading(false);
+          setShowDialog(true);
+
+          if (response.data.success) {
+            localStorage.setItem('userData', JSON.stringify(response.data.data));
+          }
+        })
+        .catch(error => {
+          console.error(error);
+          setIsLoading(false);
+        });
+    }
   };
 
   const onClose = (e) => {
