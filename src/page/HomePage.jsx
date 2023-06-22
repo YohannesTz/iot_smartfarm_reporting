@@ -124,7 +124,7 @@ const HomePage = () => {
             <p className="text-4xl sm:text-3xl text-center text-gray-800 py-5">
                 Developers
             </p>
-            <div className="grid grid-cols-3 gap-3 place-items-center py-10">
+            <div className="grid grid-cols-3 justify-center gap-3 place-items-center py-10 place-content-center">
                 <div className="content-center shadow-lg hover:shadow-2xl py-10 px-20 rounded-lg border-2">
                     <img class="rounded-full border border-gray-100 self-center" width="150px" height="150px" src="./images/image_placeholder.jpg" alt="user image" />
                     <p className="text-xl text-center text-gray-800 font-bold py-4">
