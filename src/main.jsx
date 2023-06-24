@@ -11,6 +11,7 @@ import NotFoundErrorPage from './page/NotFoundErrorPage';
 import SignInPage from './page/SignInPage';
 import SignUpPage from './page/SignUpPage';
 import DataViewPage from './page/DataViewPage';
+import ContactUsPage from './page/ContactUsPage';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <DataViewPage />
+      },
+      {
+        path: "/contact",
+        element: <ContactUsPage />
       }
     ]
   },

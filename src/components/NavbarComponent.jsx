@@ -13,6 +13,10 @@ const NavbarComponent = () => {
         navigate("/");
     };
 
+    const handleContact = () => {
+        navigate("/contact");
+    };
+
     return (
         <div className="sticky top-0 z-1000 bg-white">
             <Navbar fluid rounded>
@@ -30,7 +34,12 @@ const NavbarComponent = () => {
                         Dashboard
                     </Navbar.Link>
                     {isAuthenticated && (
-                        <Navbar.Link onClick={handleLogOut}>
+                        <Navbar.Link onClick={handleContact} className="cursor-grab">
+                            Contact
+                        </Navbar.Link>
+                    )}
+                    {isAuthenticated && (
+                        <Navbar.Link onClick={handleLogOut} className="cursor-grab">
                             Logout
                         </Navbar.Link>
                     )}

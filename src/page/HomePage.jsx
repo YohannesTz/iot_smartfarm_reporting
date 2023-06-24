@@ -127,39 +127,45 @@ const HomePage = () => {
             <div className="grid grid-cols-3 justify-center gap-3 place-items-center py-10 place-content-center">
                 <div className="content-center shadow-lg hover:shadow-2xl py-10 px-20 rounded-lg border-2">
                     <img class="rounded-full border border-gray-100 self-center" width="150px" height="150px" src="./images/image_placeholder.jpg" alt="user image" />
-                    <p className="text-xl text-center text-gray-800 font-bold py-4">
+                    <p className="text-xl text-center text-gray-800 font-bold">
                         Natnael Dagne
                     </p>
+                    <p className="text-xl text-center text-gray-500">Project Manager</p>
                 </div>
 
                 <div className="content-center shadow-lg hover:shadow-2xl py-10 px-20 rounded-md border-2">
                     <img class="rounded-full border border-gray-100 self-center" width="150px" height="150px" src="./images/image_placeholder.jpg" alt="user image" />
-                    <p className="text-xl text-center text-gray-800 font-bold py-4">
+                    <p className="text-xl text-center text-gray-800 font-bold">
                         Naol Abdissa
                     </p>
+                    <p className="text-xl text-center text-gray-500">Programmer</p>
                 </div>
 
                 <div className="content-center shadow-lg hover:shadow-2xl py-10 px-20 rounded-md border-2">
                     <img class="rounded-full border border-gray-100 self-center" width="150px" height="150px" src="./images/image_placeholder.jpg" alt="user image" />
-                    <p className="text-xl text-center text-gray-800 font-bold py-4">
+                    <p className="text-xl text-center text-gray-800 font-bold">
                         Muktar Mohammed
                     </p>
+                    <p className="text-xl text-center text-gray-500">Maintenance</p>
                 </div>
+            </div>
 
+            <div className="flex flex-row justify-center gap-4 place-items-center place-content-center">
                 <div className="content-center shadow-lg hover:shadow-2xl py-10 px-20 rounded-md border-2">
                     <img class="rounded-full border border-gray-100 self-center" width="150px" height="150px" src="./images/female-placeholder.jpeg" alt="user image" />
-                    <p className="text-xl text-center text-gray-800 font-bold py-4">
+                    <p className="text-xl text-center text-gray-800 font-bold">
                         Rakeb Demissew
                     </p>
+                    <p className="text-xl text-center text-gray-500">System Analyst</p>
                 </div>
 
-                <div className="content-center shadow-lg hover:shadow-2xl py-10 px-20 rounded-md border-2">
+                <div className="content-center shadow-lg hover:shadow-2xl py-10 px-20 rounded-lg border-2">
                     <img class="rounded-full border border-gray-100 self-center" width="150px" height="150px" src="./images/image_placeholder.jpg" alt="user image" />
-                    <p className="text-xl text-center text-gray-800 font-bold py-4">
+                    <p className="text-xl text-center text-gray-800 font-bold">
                         Yohannes Bahiru
                     </p>
+                    <p className="text-xl text-center text-gray-500">System Analyst</p>
                 </div>
-
             </div>
         </div>
     );
