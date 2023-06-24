@@ -78,6 +78,8 @@ const SignInPage = () => {
   const onClose = (e) => {
     if (result.success) {
       navigate("/")
+    } else {
+      setShowDialog(false);
     }
   };
 
