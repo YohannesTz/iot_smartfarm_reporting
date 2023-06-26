@@ -36,7 +36,7 @@ const DashboardComponent = (props) => {
     useEffect(() => {
         const fetchData = () => {
             axios
-                .get(BASE_URL + `getSummary.php?password=${userData.pwd}&hardwareId=${userData.user.hardwareId}&isEnc=true&${isRand}&mode=${timeMode}`)
+                .get(BASE_URL + `getSummary.php?password=${userData.pwd}&hardwareId=${userData.user.hardwareId}&isEnc=true${isRand}&mode=${timeMode}`)
                 .then(response => {
                     if (response.data.success) {
                         setData(response.data.data);
