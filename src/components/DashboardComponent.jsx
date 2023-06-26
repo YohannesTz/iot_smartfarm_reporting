@@ -19,7 +19,7 @@ const DashboardComponent = (props) => {
     });
 
     const userData = props.userData;
-    const isRand = props.isRandom ? "&isRand=true" : "";
+    const isRand = props.isRandom ? "&isRand=false" : "";
 
     useEffect(() => {
         function handleResize() {
