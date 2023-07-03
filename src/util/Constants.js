@@ -1,4 +1,3 @@
-//const BASE_URL = 'https://sleeping-dragon.000webhostapp.com/proj/';
-const BASE_URL = 'https://farmig.000webhostapp.com/iot/';
+const BASE_URL = 'http://localhost:3000/';
 
 export { BASE_URL };
