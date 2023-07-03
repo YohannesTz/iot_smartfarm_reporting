@@ -128,7 +128,7 @@ const HomePage = () => {
                 <div className="content-center shadow-lg hover:shadow-2xl py-10 px-20 rounded-lg border-2">
                     <img class="rounded-full border border-gray-100 self-center" width="150px" height="150px" src="./images/image_placeholder.jpg" alt="user image" />
                     <p className="text-xl text-center text-gray-800 font-bold">
-                        Natnael Dagne
+                        [Member Name]
                     </p>
                     <p className="text-xl text-center text-gray-500">Project Manager</p>
                 </div>
@@ -136,7 +136,7 @@ const HomePage = () => {
                 <div className="content-center shadow-lg hover:shadow-2xl py-10 px-20 rounded-md border-2">
                     <img class="rounded-full border border-gray-100 self-center" width="150px" height="150px" src="./images/image_placeholder.jpg" alt="user image" />
                     <p className="text-xl text-center text-gray-800 font-bold">
-                        Naol Abdissa
+                        [Member Name]
                     </p>
                     <p className="text-xl text-center text-gray-500">Programmer</p>
                 </div>
@@ -144,7 +144,7 @@ const HomePage = () => {
                 <div className="content-center shadow-lg hover:shadow-2xl py-10 px-20 rounded-md border-2">
                     <img class="rounded-full border border-gray-100 self-center" width="150px" height="150px" src="./images/image_placeholder.jpg" alt="user image" />
                     <p className="text-xl text-center text-gray-800 font-bold">
-                        Muktar Mohammed
+                        [Member Name]
                     </p>
                     <p className="text-xl text-center text-gray-500">Maintenance</p>
                 </div>
@@ -154,7 +154,7 @@ const HomePage = () => {
                 <div className="content-center shadow-lg hover:shadow-2xl py-10 px-20 rounded-md border-2">
                     <img class="rounded-full border border-gray-100 self-center" width="150px" height="150px" src="./images/female-placeholder.jpeg" alt="user image" />
                     <p className="text-xl text-center text-gray-800 font-bold">
-                        Rakeb Demissew
+                        [Memeber Name]
                     </p>
                     <p className="text-xl text-center text-gray-500">System Analyst</p>
                 </div>
@@ -162,7 +162,7 @@ const HomePage = () => {
                 <div className="content-center shadow-lg hover:shadow-2xl py-10 px-20 rounded-lg border-2">
                     <img class="rounded-full border border-gray-100 self-center" width="150px" height="150px" src="./images/image_placeholder.jpg" alt="user image" />
                     <p className="text-xl text-center text-gray-800 font-bold">
-                        Yohannes Bahiru
+                        [Member Name]
                     </p>
                     <p className="text-xl text-center text-gray-500">System Analyst</p>
                 </div>
